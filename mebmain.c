@@ -33,7 +33,7 @@ switch(option){
 	case 3:
 		printf("Название элемента для удаления: ");
                 scanf("%s", title);
-                delite(&a, title);
+                delete(&a, title);
 		save("mebel.txt", &a);
 		all_vivod(&a);
                 break;
