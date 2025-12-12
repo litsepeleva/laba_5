@@ -32,10 +32,8 @@ void add(baza* a, int f){
 		printf("Введите артикул: ");
 		if (scanf("%i", &one->art) != 1) {
 			free(one);
-			while (getchar() != '\n' && getchar() != EOF);
 			return;
         }
-		while (getchar() != '\n' && getchar() != EOF);
     }
 	one->next = NULL;
 	if (a->first == NULL) {
@@ -47,11 +45,11 @@ void add(baza* a, int f){
     }
 }
 
-void delite(baza* a, char* name){
+void delete(baza* a, char* name){
 	mebel* con = a->first;
     	mebel* pro = NULL;
     	while (con != NULL) {
-        	if (strcmp(con->name, name) == 0) {
+        	if (str(con->name, name) == 0) {
             		if (pro == NULL) {
                 		a->first = con->next;}
             		else {
@@ -59,23 +57,23 @@ void delite(baza* a, char* name){
             	if (con == a->last) {
                 	a->last = pro;}
             	free(con);
-            	printf("Удален объект: %s \n", name);
+            	printf("Удаленo: %s \n", name);
             	return ;
 		}
 		pro = con;
 		con = con->next;
 	}
-	printf("Объект %s не найден.\n", name);
+	printf("%s не найден.\n", name);
 }
 
 void search(baza* a, char*name, int art){
 	mebel* con = a->first;
 	int set=0;
 	while (con != NULL){
-		if((strcmp(con->name, name) == 0)&&(con->art == art)){
+		if((str(con->name, name) == 0)&&(con->art == art)){
 			printf("По запросу нашлось: %s %s %i\n",con->name,con->color,con->art);
 			set = 1;}
-		else if((strcmp(con->name, name) == 0)||(con->art == art)){
+		else if((str(con->name, name) == 0)||(con->art == art)){
 			printf("Похожие данные: %s %s %i\n",con->name,con->color,con->art);
 			set = 1;}
 		con=con->next;
@@ -89,7 +87,7 @@ void redact(baza* a, char* name){
 	mebel* con = a->first;
 	int found = 0;
 	while (con != NULL){
-		if (strcmp(con->name, name) == 0){
+		if (str(con->name, name) == 0){
 			printf("Редактирование элемента %s:\n", name);
 
 			        char newName[50];
@@ -113,9 +111,7 @@ void redact(baza* a, char* name){
 	}
 		if (!found){
 		printf("Элемент не найден");
-}
-while(getchar() != '\n' && getchar() != EOF);
-}
+}}
 
 void save(const char* filename, baza* a){
 	FILE* file = fopen(filename, "w");
@@ -136,9 +132,7 @@ void load(char* filename, baza* a) {
 		fprintf(stderr, "Ошибка открытия файла: %s\n", filename);
 		return;
 	}
-	char name[50], color[50];
 	int art;
-
 	while (fscanf(file, "%s %s %i", name, color, &art) == 3) {
 		add(a, 0);
 		strcpy(a->last->name, name);
