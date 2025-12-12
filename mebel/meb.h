@@ -17,7 +17,7 @@ typedef struct baza{
 
 void all_vivod(baza* a);
 void add(baza* a, int f);
-void delite(baza* a, char* name);
+void delete(baza* a, char* name);
 void search(baza* a, char*name, int art);
 void redact(baza* a, char* name);
 void save(const char* filename, baza* a);
