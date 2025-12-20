@@ -5,7 +5,10 @@
 
 int main(){
 baza a ={NULL,NULL};
-load("mebel.txt",&a);
+char filename[100];
+printf("Введите имя файла: ");
+scanf("%99s", filename);
+load(filename, &a);
 int option;
 char title[100];
 
@@ -27,14 +30,14 @@ switch(option){
 		break;
 	case 2:
 		add(&a ,1);
-		save("mebel.txt", &a);
+		save(filename, &a);
 		all_vivod(&a);
 		break;
 	case 3:
 		printf("Название элемента для удаления: ");
                 scanf("%s", title);
                 delete(&a, title);
-		save("mebel.txt", &a);
+		save(filename, &a);
 		all_vivod(&a);
                 break;
 	case 4:
@@ -49,7 +52,7 @@ switch(option){
 		printf("Название элемента для редактирования: ");
 		scanf("%s", title);
 		redact(&a, title);
-		save("mebel.txt", &a);
+		save(filename, &a);
 		all_vivod(&a);
 		break;
 	case 6:
