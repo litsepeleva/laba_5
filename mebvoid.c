@@ -116,6 +116,7 @@ void redact(baza* a, char* name){
 void save(const char* filename, baza* a){
 	FILE* file = fopen(filename, "w");
 	if(file==NULL){
+		fprintf("Oшибка: не удалось открыть файл", filename);
 		return;
 	}
 	mebel* con = a->first;
@@ -129,7 +130,7 @@ void save(const char* filename, baza* a){
 void load(char* filename, baza* a) {
 	FILE *file = fopen(filename, "r");
 	if (file == NULL) {
-		fprintf(stderr, "Ошибка открытия файла: %s\n", filename);
+		printf(Файл не надйен, будет создан новый \n", filename);
 		return;
 	}
 	char name[50], color[50];
