@@ -57,7 +57,7 @@ switch(option){
 		break;
 	case 6:
 		save(filename, &a);
-		printf("Сохранено в файл: %s/n", filename);
+		printf("Сохранено в файл: %s /n", filename);
 		break;
 	default:
 		printf("Некорректный выбор, попробуйте еще раз\n");
